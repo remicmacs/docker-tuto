@@ -92,3 +92,34 @@ sudo usermod -aG docker $USER
 ```
 
 Afin de tester si on peut utiliser la commande `docker` sans `sudo`, il faut **au moins** fermer et rouvrir la session, voire redémarrer.
+
+## Installation de docker-compose
+
+@TODO
+
+## Ajout de la complétion de ligne de commande
+
+### ZSH
+
+```bash
+curl -fLo ~/.zsh/completion/_docker https://raw.github.com/felixr/docker-zsh-completion/master/_docker
+```
+
+et on ajoute
+
+```zsh
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
+```
+
+au fichier ~/.zshrc`, de manière à déclencher la complétion.
+
+On redémarre le shell:
+
+```zsh
+exec $SHELL -l
+```
+
+### BASH
+
+@TODO
