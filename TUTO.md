@@ -1,6 +1,8 @@
 # Utilisations basiques de Docker
 
-[Le tutoriel d'orgine](https://training.play-with-docker.com/beginner-linux/)
+* [Le tutoriel d'orgine](https://training.play-with-docker.com/beginner-linux/)
+* [Un article intéressant qui donne des bons exemples](https://medium.com/travis-on-docker/why-and-how-to-use-docker-for-development-a156c1de3b24)
+* 
 
 ## Lancer une tâche
 
@@ -30,10 +32,14 @@ On peut lancer un container pour exécuter des tâches interactives, comme le sh
 docker container run --interactive --tty --rm ubuntu bash
 ```
 
-Une fois l'image importée et le container démarré, le prompt change, indiquant qu'on se situe à présent dans une session `bash`. Cette session se comporte exactement comme si c'était une session sur un autre OS.
+Une fois l'image importée et le container démarré, le *prompt* change, indiquant qu'on se situe à présent dans une session `bash`. Cette session se comporte exactement comme si c'était une session sur un autre OS.
 
-`--interactive` est l'option qui réclame une session interactive et `--tty` permet d'obtenir un tty comme interface de session.
-Sans `--tty`, l'interface interactive est primitive (pas de prompt, autocomplétion, etc.), et sans `--interactive` on a un prompt mais après toutes les commandes n'ont en apparence aucun effet et on ne peut pas fermer le container manuellement.
+* `--interactive` est l'option qui réclame une session interactive
+* `--tty` permet d'obtenir un tty comme interface de session
+
+Sans `--tty`, l'interface interactive est primitive (pas de *prompt*, autocomplétion, etc.), et sans `--interactive` on a un *prompt* mais après toutes les commandes n'ont en apparence aucun effet et on ne peut pas fermer le container manuellement.
+
+Le raccourci le plus utilisé pour ces deux options à la fois est `-it`. Dès qu'on a besoin d'une ligne de commande il faut mettre cette combinaison d'options.
 
 ### Lancer un service en background
 
@@ -116,7 +122,10 @@ Pour créer une image sur la base de ce Dockerfile:
 docker image build --tag <dockerid>/linux_tweet_app:1.0 .
 ```
 
-Où `--tag` permet de *nommer* l'image ainsi créée afin de la retrouver facilement. Le nom qui est donné est constitué de `<dockerid>/<nomimage>` le docker ID n'est pas *nécessaire* à la création de l'image en local mais permet d'identifier uniquement l'image de manière à pouvoir la stocker dans le repository en ligne [DockerHub](https://hub.docker.com/) à la manière d'un code repository comme GitHub.
+Où `--tag` permet de *nommer* l'image ainsi créée afin de la retrouver facilement.
+
+Le nom qui est donné est constitué de `<dockerid>/<nomimage>` le docker ID n'est pas *nécessaire* à la création de l'image en local mais permet d'identifier uniquement l'image de manière à pouvoir la stocker dans le repository en ligne [DockerHub](https://hub.docker.com/) à la manière d'un code repository comme GitHub.
+
 Le numéro séparé du nom par `:` est tout simplement le numéro de version de l'image.
 
 **ATTENTION**: noter le `.`, très important ! Il désigne le dossier à partir duquel construire l'image. Ici c'est le dossier courant.
@@ -158,7 +167,7 @@ On peut maintenant désormais directement modifier les fichiers du projet dans l
 
 ### Mettre à jour l'image
 
-Pour que les changements faits à l'application soient persistants, il faut construire une nouvelle version de l'image.
+Pour que les changements faits à l'application soient persistants, **il faut construire une nouvelle version de l'image**.
 
 Pour voir les images disponibles en local:
 

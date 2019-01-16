@@ -1,5 +1,9 @@
 # Installation de Docker
 
+Ce document a pour objectif de retracer les étapes effectuées durant les premiers essais de Docker.
+
+Il y aura nécessairement des répétitions avec la [documentation officielle](https://docs.docker.com/install/linux/docker-ce/debian/#install-docker-ce) que suivie pour réaliser ces tâches.
+
 ## Installer Docker sur Windows
 
 C'est beaucoup plus simple si on veut l'installer sur Windows :
@@ -22,15 +26,11 @@ L'utilitaire `docker-compose` est inclus dans Docker pour Windows.
 
 ## Installer Docker sur Debian Linux
 
-Ce document a pour objectif de retracer les pas que j'ai effectués durant mes débuts avec Docker.
+La version de Docker installée est `docker-ce` soit la **Community Edition** de Docker.
 
-Il y aura nécessairement des répétitions avec la [documentation officielle](https://docs.docker.com/install/linux/docker-ce/debian/#install-docker-ce) que j'ai suivie pour arriver à mes fins.
+### Installation via le *repository* privé Docker
 
-La version de Docker installée est `docker-ce` soit la **Community Edition** de Docker, de manière à tester la technologie sans avoir à payer pour le soft.
-
-### Installation via le repository privé Docker
-
-#### Configurer le repository
+#### Configurer le *repository*
 
 Mettre à jour la liste des paquets:
 
@@ -38,7 +38,7 @@ Mettre à jour la liste des paquets:
 sudo apt-get update
 ```
 
-Installation des paquets permettant à `apt` d'installer depuis un repository via HTTPS:
+Installation des paquets permettant à `apt` d'installer depuis un *repository* via HTTPS:
 
 ```bash
 sudo apt-get install \
@@ -64,9 +64,9 @@ sudo add-apt-repository \
    stable"
 ```
 
-#### Installation de docker-ce avec apt
+#### Installation de `docker-ce` avec `apt`
 
-On remet à jour les listes de paquets avec le nouveau repository:
+On remet à jour les listes de paquets avec le nouveau *repository*:
 
 ```bash
 sudo apt-get update
@@ -91,7 +91,7 @@ sudo systemctl enable docker
 sudo systemctl start docker
 ```
 
-Et après on réessaye le hello-world et ça devrait fonctionner :)
+Et après on réessaye le `hello-world` et ça devrait fonctionner 😀
 
 #### Gestion des permissions
 
@@ -115,11 +115,11 @@ sudo usermod -aG docker $USER
 
 Afin de tester si on peut utiliser la commande `docker` sans `sudo`, il faut **au moins** fermer et rouvrir la session, voire redémarrer.
 
-### Installation de docker-compose
+### Installation de `docker-compose`
 
-[Docker documentation](https://docs.docker.com/compose/install/).
+[Dockementation de `docker-compose`](https://docs.docker.com/compose/).
 
-L'utilitaire `docker-compose` permet de décrire un réseau de services pris en charge par des containers qui peuvent communiquer entre eux. C'est utile pour le développement : séparer la base de données du service Node qu'on développe, par exemple.
+L'utilitaire `docker-compose` permet de décrire un réseau de services pris en charge par des containers qui peuvent communiquer entre eux. C'est utile pour le développement : afin de séparer la base de données du service Node qu'on développe, par exemple.
 
 ### Ajout de la complétion de ligne de commande
 
@@ -136,7 +136,7 @@ fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 ```
 
-au fichier ~/.zshrc`, de manière à déclencher la complétion.
+au fichier `~/.zshrc`, de manière à déclencher la complétion.
 
 On redémarre le shell:
 
