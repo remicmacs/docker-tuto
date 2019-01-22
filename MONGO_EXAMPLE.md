@@ -34,9 +34,9 @@ Et quand on a fini on revient au numéro 1, et c'est comme si l'installation de 
 
 Il faut créer un volume Docker pour la persistance des données de la base Mongo.
 
-Encore une fois c'est à faire *si on en a vraiment besoin*. Je ne saurais trop conseiller de **créer des données de test** et de scripter l'insertion de ces données dans la base à chaque fois qu'on la lance. À des fins de développement **il ne devrait pas y avoir besoin de conserver les données**. Sinon c'est que vous avez du travail non sauvegardable et non récupérable dans la base de données **qui ne peut pas être transférer dans un répertoire de gestion de version comme Git**.
+Encore une fois c'est à faire *si on en a vraiment besoin*. Je ne saurais trop conseiller de **créer des données de test** et de scripter l'insertion de ces données dans la base à chaque fois qu'on la lance. À des fins de développement **il ne devrait pas y avoir besoin de conserver les données**. Sinon c'est que vous avez du travail stocké dans la base de données **qu'on ne peut pas sauvegarder** et versionner.
 
-Si vous voulez quand même avoir une persistance des données (je comprends des fois y'a besoin):
+Si vous voulez quand même avoir une persistance des données (des fois y'a besoin):
 
 On crée un volume avec un **nom**:
 
@@ -46,45 +46,7 @@ docker volume create --name=mongo-dev
 
 Et... voilà c'est tout !
 
-#### Deux trois autres trucs pour la gestion des volumes
-
-Lister les volumes existants:
-
-```bash
-docker volume ls
-```
-
-Obtenir des informations sur un volume:
-
-```bash
-docker volume inspect <nom_volume>
-```
-
-Retirer tous les volumes qui ne sont pas en cours d'utilisation:
-
-```bash
-docker volume prune
-```
-
-Mais on peut aussi **labeliser** ses volumes pour éviter de les supprimer avec prune.
-
-Création d'un volume avec label:
-
-```bash
-docker volume --name mongo-dev --label dev
-```
-
-Suppression de tous les volumes sauf ceux labellisés `dev`:
-
-```bash
-docker volume prune --filter label!=dev
-```
-
-On peut aussi supprimer les volumes nominalement:
-
-```bash
-docker volume rm mongo-dev
-```
+[Quelques trucs en plus sur la gestion des volumes](VOLUMES.md)
 
 ### Démarrer le container MongoDB
 
@@ -113,7 +75,7 @@ docker run --rm \
 -d mongo:3.4-jessie
 ```
 
-*Note*: Ici j'ai utilisé les versions courtes des options (pour lesquelles c'est possible, [RTFM](https://docs.docker.com/engine/reference/commandline/docker/).
+*Note*: Ici j'ai utilisé les versions courtes des options (pour lesquelles c'est possible, [RTFM](https://docs.docker.com/engine/reference/commandline/docker/)).
 
 On utilise un volume nommé `mongo-volume` pour qu'il prenne la place du dossier `/data/db` à l'intérieur du container.
 

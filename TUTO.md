@@ -2,7 +2,6 @@
 
 * [Le tutoriel d'orgine](https://training.play-with-docker.com/beginner-linux/)
 * [Un article intéressant qui donne des bons exemples](https://medium.com/travis-on-docker/why-and-how-to-use-docker-for-development-a156c1de3b24)
-* 
 
 ## Lancer une tâche
 

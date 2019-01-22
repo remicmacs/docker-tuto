@@ -6,6 +6,7 @@ Quelques notes sur la manière d'utiliser Docker pour le développement.
 * [Utilisations basiques](TUTO.md)
 * [Construire une image](BUILD.md)
 * [Exemple avec MongoDB](MONGO_EXAMPLE.md)
+* [Gestion des données (Volumes)](VOLUMES.md)
 * [Utiliser Docker avec un IDE](DEV.md)
 
 ## Ressources externes

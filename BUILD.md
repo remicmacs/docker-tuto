@@ -8,6 +8,10 @@ Les images fonctionnent par couches : une image de base et plusieurs couches qui
 
 Cela permet de rendre les modifications immutables mais simples à modifier, légères à manipuler.
 
+Il vaut mieux avoir plusieurs images indépendantes pour mieux gérer ses dépendances. Par exemple on peut imaginer une image `node:8.15` qui ne contient rien de plus que NodeJS et NPM, puis une nouvelle image qui utilise cette image comme base contenant juste les dépendances basiques (express, react, etc.), puis une autre image contenant les dépendances spécifiques au projet, etc.
+
+Si on veut créer une image pour un projet existant, avec des dépendances déjà listées dans un fichier comme `package.json`, par exemple, il vaut mieux **d'abord** copier uniquement le fichier en question et installer les dépendances **puis** copier le reste du code du projet. Cela permet à Docker de faire une image pour les dépendances qui ne sera pas modifiée au prochain build si le fichier `package.json` n'a pas été modifié. Tandis que si la totalité du dossier est copiée **puis** les dépendances sont installées, alors à chaque build Docker installera à nouveau les dépendances même s'il n'y a qu'un caractère modifié dans le code source.
+
 ### Avant de créer une nouvelle image
 
 Identifier les dépendances dont on a besoin pour le service qu'on construit.
@@ -20,7 +24,8 @@ On configure ensuite les volumes et/ou les *bind mounts* requis pour le fonction
 
 ## Créer des réseaux virtuels avec plusieurs services
 
-Mieux vaut plusieurs images fonctionnant ensemble qu'une grosse image complexe qui réunit tout et qui est chiante à debugger.
+Mieux vaut plusieurs images fonctionnant ensemble qu'une grosse image complexe qui réunit tout et qui est pénible à debugger.
 
 `docker-compose` est l'outil permettant de décrire un réseau de services containairisés avec un fichier de conf YAML.
-Permet de faire du microservice like it's not'ing.
+
+Comme c'est un sujet à part entière, je renvoie à la documentation et [au tuto listé ci-dessus](https://training.play-with-docker.com/microservice-orchestration/)

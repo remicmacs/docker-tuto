@@ -121,6 +121,22 @@ Afin de tester si on peut utiliser la commande `docker` sans `sudo`, il faut **a
 
 L'utilitaire `docker-compose` permet de décrire un réseau de services pris en charge par des containers qui peuvent communiquer entre eux. C'est utile pour le développement : afin de séparer la base de données du service Node qu'on développe, par exemple.
 
+L'installation de `docker-compose` implique de vérifier sur [le repo Github](https://github.com/docker/compose/releases) quelle est la dernière version de `docker-compose` à avoir été publiée.
+
+Une fois muni de cette information, on utilise le *one-liner* qui suit en remplaçant le numéro de version par celui qui convient. Préférer les versions taggées `lastest release` plutôt que `pre-release`.
+
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
+
+On rajoute les permissions d'exécution sur le binaire `docker-compose`:
+
+```bash
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
+> **ATTENTION**: Si la commande ne fonctionne pas malgré tout, c'est que le chemin `/usr/local/bin` n'est pas dans le `PATH` utilisateur. Ou que l'utilisateur ne fait pas partie du groupe `docker` mais ça normalement ça a déjà été géré [durant l'installation de docker](#gestion-des-permissions).
+
 ### Ajout de la complétion de ligne de commande
 
 #### ZSH
