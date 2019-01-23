@@ -141,7 +141,11 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 #### ZSH
 
+Pour `docker`:
+
 ```bash
+# Si le dossier n'existe pas déjà:
+mkdir -p ~/.zsh/completion
 curl -fLo ~/.zsh/completion/_docker https://raw.github.com/felixr/docker-zsh-completion/master/_docker
 ```
 
@@ -159,6 +163,14 @@ On redémarre le shell:
 ```zsh
 exec $SHELL -l
 ```
+
+Pour `docker-compose`:
+
+```bash
+curl -L https://raw.githubusercontent.com/docker/compose/1.23.2/contrib/completion/zsh/_docker-compose > ~/.zsh/completion/_docker-compose
+```
+
+Et avec ce qui a été rajouté au `.zshrc` pour l'autocomplétion de la commande `docker`, ça devrait marcher directement après avoir relancé le shell.
 
 #### BASH
 
